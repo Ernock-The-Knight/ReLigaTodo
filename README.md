@@ -1,12 +1,27 @@
-# ReLigaTodo
+ # ReLigaTodo
 
 ## Seção 1 - Sobre o projeto
 
-**Nome do projeto:** [ReLigaTodo]
-**ODS escolhida:** ODS 4 – Educação de Qualidade e ODS 10 – Redução das Desigualdades
-**Autor:** [Robson-M.-Vieira]
+**Nome do projeto:** 
+
+[ReLigaTodo]
+
+**ODS escolhida:**
+
+ODS 4 – Educação de Qualidade e 
+ODS 10 – Redução das Desigualdades
+
+**Autor:**
+
+[Robson-M.-Vieira]
+
 **Objetivo do projeto:**
-O ReLigaTodo é uma plataforma educacional voltada para democratizar o acesso à educação, conectando alunos, professores e conteúdos em um ambiente digital. A proposta é facilitar o cadastro de alunos, a escolha de disciplinas, o acompanhamento de aulas e a gestão de matrículas, promovendo mais inclusão e acesso à aprendizagem de qualidade.
+
+O ReLigaTodo é uma plataforma educacional voltada para democratizar o acesso
+à educação, conectando alunos, professores e conteúdos em um ambiente digital. 
+A proposta é facilitar o cadastro de alunos, a escolha de disciplinas, o 
+acompanhamento de aulas e a gestão de matrículas, promovendo mais 
+inclusão e acesso à aprendizagem de qualidade.
 
 ## Seção 2 - Como rodar
 
