@@ -1,0 +1,103 @@
+/* ==========================================================================
+   1. VARIÁVEIS DE DESIGN (Tokens de Marca)
+   Baseado na paleta oklch extraída do design original.
+   ========================================================================== */
+:root {
+  /* Identidade da Marca: Cores principais definidas no sistema[cite: 6] */
+  --brand-blue: oklch(0.49 0.09 245);    /* Azul primário, usado em CTAs e navbars */
+  --brand-green: oklch(0.52 0.10 150);   /* Verde, usado em destaques de seção */
+  --brand-orange: oklch(0.68 0.16 50);   /* Laranja, acento visual */
+  --brand-yellow: oklch(0.83 0.14 85);   /* Amarelo para badges/detalhes */
+  --brand-red: oklch(54.9% 0.11956 20.427); /* Vermelho institucional */
+  --brand-red2: oklch(64.009% 0.24541 27.239); /* Vermelho secundário para alertas */
+  
+  /* Superfícies: Cores de fundo dos cards e containers[cite: 6] */
+  --paper: oklch(0.985 0.005 80);        /* Fundo base claro */
+  --paper-2: oklch(95.985% 0.00783 73.512 / 0.842); /* Fundo alternativo suave */
+  
+  /* Semântica: Cores de texto e bordas[cite: 6] */
+  --background: oklch(0.99 0.003 80);    /* Cor de fundo padrão da página */
+  --foreground: oklch(0.17 0.01 60);     /* Cor de texto principal (contraste alto) */
+  --border: oklch(0.89 0.01 70);         /* Cor padrão para bordas de inputs/cards */
+  
+  /* Tipografia: Fontes definidas no plano[cite: 6] */
+  --font-display: "Plus Jakarta Sans", system-ui, sans-serif; /* Títulos (h1-h6) */
+  --font-sans: "Inter", system-ui, sans-serif;                /* Textos e parágrafos */
+}
+
+/* ==========================================================================
+   2. RESET E ESTILOS BASE
+   Garante consistência em todos os navegadores[cite: 6].
+   ========================================================================== */
+* {
+  margin: 0;           /* Remove margens padrão do navegador */
+  padding: 0;          /* Remove paddings padrão do navegador */
+  box-sizing: border-box; /* Calcula tamanho do elemento incluindo padding/borda */
+  border-color: var(--border); /* Usa a variável de borda global */
+}
+
+html {
+  scroll-behavior: smooth; /* Animação suave ao rolar a página */
+}
+
+body {
+  background-color: var(--background); /* Aplica fundo definido nos tokens */
+  color: var(--foreground);            /* Aplica cor de texto definida nos tokens */
+  font-family: var(--font-sans);       /* Aplica fonte Inter globalmente */
+  -webkit-font-smoothing: antialiased; /* Melhora renderização de fonte em Mac/iOS */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);    /* Aplica Plus Jakarta Sans nos títulos */
+  letter-spacing: -0.02em;             /* Ajuste visual para legibilidade de títulos */
+}
+
+/* ==========================================================================
+   3. UTILITÁRIOS CUSTOMIZADOS
+   Classes reutilizáveis em qualquer componente[cite: 6].
+   ========================================================================== */
+
+/* Animação: Deslizamento suave para cima ao carregar */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease forwards; /* Aplica a animação com duração de 0.6s */
+}
+
+/* Gradiente da Marca: Usado em títulos ou CTAs principais[cite: 6] */
+.bg-brand-gradient {
+  background-image: linear-gradient(
+    135deg,
+    var(--brand-blue) 0%,
+    var(--brand-green) 50%,
+    var(--brand-orange) 100%
+  );
+}
+
+/* Efeito Hover Lift: Eleva o elemento no eixo Y e projeta sombra */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição suave */
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px); /* Move 8px para cima */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15) !important; /* Cria ilusão de profundidade */
+}
+
+/* Botão Interativo: Estilos globais para feedback de clique[cite: 6] */
+.btn-interativo {
+  transition: filter 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+.btn-interativo:hover {
+  filter: brightness(0.85); /* Escurece o botão ao passar o mouse */
+}
+
+.btn-interativo:focus,
+.btn-interativo:active {
+  outline: none; /* Remove borda padrão de foco do navegador */
+  box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.4) !important; /* Anel de foco verde */
+}

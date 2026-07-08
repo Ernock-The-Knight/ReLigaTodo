@@ -1,0 +1,403 @@
+/* 1. VARIÁVEIS DE DESIGN (Tokens de Marca)
+ * Definimos aqui as cores e propriedades que o PrimeFlex consumirá.
+ */
+:root {
+  /* Identidade da Marca */
+  --brand-blue: oklch(0.49 0.09 245);
+  --brand-green: oklch(0.52 0.10 150);
+  --brand-orange: oklch(0.68 0.16 50);
+  --brand-yellow: oklch(0.83 0.14 85);
+  --brand-red: oklch(54.9% 0.11956 20.427);
+  --brand-red2: oklch(64.009% 0.24541 27.239);
+  
+  /* Superfícies */
+  --paper: oklch(0.985 0.005 80);
+  --paper-2: oklch(95.985% 0.00783 73.512 / 0.842);
+  
+  /* Semântica (Cores de Fundo e Texto) */
+  --background: oklch(0.99 0.003 80);
+  --foreground: oklch(0.17 0.01 60);
+  --border: oklch(0.89 0.01 70);
+  
+  /* Tipografia */
+  --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+/* Adicione isso ao seu App.css */
+.fade-out-bottom {
+  /* O gradiente vai de opaco (preto) até transparente */
+  -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+}
+
+/* 2. RESET E ESTILOS BASE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* 3. ANIMAÇÕES E UTILITÁRIOS CUSTOMIZADOS
+ * Substituímos o conceito de @utility do Tailwind por classes CSS padrão.
+ */
+
+/* Animação Fade-Up */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease forwards;
+}
+
+/* Gradiente da Marca */
+.bg-brand-gradient {
+  background-image: linear-gradient(
+    135deg,
+    var(--brand-blue) 0%,
+    var(--brand-green) 50%,
+    var(--brand-orange) 100%
+  );
+}
+
+/* Estilo para links de navegação */
+.nav-link {
+  color: var(--foreground);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: var(--brand-blue);
+}
+
+/* Adicione no App.css */
+.hover-lift {
+  /* Prepara o elemento para transições suaves nas propriedades transform e box-shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  /* Move o elemento 8 pixels para cima no eixo Y */
+  transform: translateY(-8px);
+  /* Amplia a sombra para dar a ilusão de que o elemento se aproximou da tela */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Adicione no arquivo App.css */
+html {
+  /* Delega a animação de rolagem diretamente para o motor nativo do navegador */
+  scroll-behavior: smooth;
+}
+
+/* Adicione no App.css */
+.btn-interativo {
+  /* Delega a animação para a GPU, garantindo 60fps na transição */
+  transition: filter 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+/* Mecânica de Hover: Escurece a cor atual em 15% */
+.btn-interativo:hover {
+  filter: brightness(0.85);
+}
+
+/* Mecânica de Clique/Foco: Adiciona o anel verde claro */
+.btn-interativo:focus,
+.btn-interativo:active {
+  /* Remove a borda preta padrão dos navegadores (acessibilidade nativa) */
+  outline: none;
+  /* Cria um anel de 4px na cor verde (RGB: 46, 204, 113) com 40% de opacidade */
+  box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.4) !important;
+}
+
+/* Opcional: Feedback tátil imediato ao pressionar o clique (pequena afundada) */
+.btn-interativo:active {
+  transform: scale(0.97);
+}
+
+/* ==========================================================================
+   CLASSE BASE ATUALIZADA (CORREÇÃO DE ANIMAÇÃO)
+   ========================================================================== */
+.hero-tab {
+  border-top: 4px solid #2e2e2e !important;
+  color: #2e2e2e !important;
+  cursor: pointer;
+  
+  /* 
+   * EXPLICAÇÃO DA CORREÇÃO:
+   * Adicionamos ', transform 0.2s ease' ao final da lista. 
+   * Agora o navegador sabe que deve suavizar a mudança de cor, 
+   * a mudança de borda E a movimentação física de subida (transform) do hover-lift.
+   */
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+/* Mantém o restante das classes (.tab-aluno, .tab-professor, .tab-fiscal) idênticas como estavam */
+.tab-aluno:hover {
+  border-top-color: var(--brand-blue, #2563eb) !important;
+  color: var(--brand-blue, #2563eb) !important;
+}
+.tab-professor:hover {
+  border-top-color: var(--brand-green, #16a34a) !important;
+  color: var(--brand-green, #16a34a) !important;
+}
+.tab-fiscal:hover {
+  border-top-color: var(--brand-orange, #ea580c) !important;
+  color: var(--brand-orange, #ea580c) !important;
+}
+.tab-google:hover {
+  border-top-color: var(--brand-blue, #2563eb) !important;
+  color: var(--brand-blue, #2563eb) !important;
+}
+.tab-profEscolhido:hover {
+  border-color: var(--brand-red2, #ff2727) !important;
+  color: var(--brand-red2, #ff2727) !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+}
+.tab-profMat {
+  border-color: var(--brand-blue, #2563eb) !important;
+}
+
+/* =========================================================
+   SISTEMA DE HOVER DO MENU LATERAL (SIDEBAR) - CORRIGIDO
+   ========================================================= */
+
+/* 1. Classe Base: Sem bordas, transição suave */
+.sidebar-item {
+  border: none !important;            /* Remove qualquer borda */
+  border-radius: 8px;                /* Arredondamento padrão */
+  transition: all 0.2s ease-in-out;  /* Suaviza as mudanças */
+  color: #495057;                    /* Cinza escuro padrão */
+  background-color: transparent;     /* Fundo transparente por padrão */
+}
+
+/* 2. Efeito Hover (passar o mouse) */
+.sidebar-item:hover {
+  background-color: #f8f9fa;         /* Fundo cinza clarinho */
+  border: none !important;           /* Garante que não apareça borda */
+}
+
+/* 3. Estado Ativo (surface-100) */
+.sidebar-item.surface-100 {
+  border: none !important;           /* Remove qualquer borda */
+}
+
+/* =========================================================
+   CORES PERSONALIZADAS PARA CADA MATÉRIA (Ativo + Hover)
+   ========================================================= */
+
+/* MATEMÁTICA (Azul) */
+.sidebar-math:hover,
+.sidebar-math.surface-100 {
+  color: #2563eb !important;
+  background-color: #eff6ff !important;
+  border: none !important;
+}
+
+/* BIOLOGIA (Vermelho) */
+.sidebar-bio:hover,
+.sidebar-bio.surface-100 {
+  color: #ef4444 !important;
+  background-color: #fef2f2 !important;
+  border: none !important;
+}
+
+/* FÍSICA (Roxo) */
+.sidebar-physics:hover,
+.sidebar-physics.surface-100 {
+  color: #8b5cf6 !important;
+  background-color: #f5f3ff !important;
+  border: none !important;
+}
+
+/* HISTÓRIA (Marrom/Cinza) */
+.sidebar-history:hover,
+.sidebar-history.surface-100 {
+  color: #57534e !important;
+  background-color: #f5f5f4 !important;
+  border: none !important;
+}
+
+/* PORTUGUÊS (Azul Claro/Ciano) */
+.sidebar-portuguese:hover,
+.sidebar-portuguese.surface-100 {
+  color: #0ea5e9 !important;
+  background-color: #f0f9ff !important;
+  border: none !important;
+}
+
+/* OPÇÕES GERAIS (Plantão, Prova, Perfil) */
+.sidebar-opcao:hover,
+.sidebar-opcao.surface-100 {
+  color: #000000 !important;
+  background-color: #f3f4f6 !important;
+  border: none !important;
+}
+
+/* =========================================================
+   ANIMAÇÃO DOS CARDS DE AULA (HOVER COM BORDA AZUL)
+   ========================================================= */
+.card-aula {
+  border-color: #e2e8f0 !important;
+  background-color: #ffffff !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+.card-aula:hover {
+  border-color: #2563eb !important;
+  background-color: #f8fafc !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
+}
+
+.card-aula .text-assistir {
+  color: #0f172a !important;
+  transition: color 0.2s ease;
+}
+
+.card-aula:hover .text-assistir {
+  color: #2563eb !important;
+}
+
+.meu-botao-voltar:hover { 
+    background-color: #f0f0f0; 
+}
+
+/* =========================================================
+   SUBSTITUIÇÃO DOS UTILITÁRIOS DE LAYOUT (sem Tailwind)
+   ========================================================= */
+
+/* Sidebar responsiva (oculta em mobile, aparece em telas médias+) */
+.sidebar {
+  display: none;
+  flex-direction: column;
+  width: 15rem;
+  background-color: var(--paper);
+  border-right: 1px solid var(--border);
+  position: sticky;
+  top: 72px;
+  height: calc(100vh - 72px);
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    display: flex;
+  }
+}
+
+/* Classe para itens ativos (já existia, apenas reforçamos) */
+.sidebar-item.surface-100 {
+  background-color: #eff6ff !important;
+  color: #2563eb !important;
+  border: none !important;
+}
+
+/* Ajuste do botão favorito e outros hovers */
+.meu-botao-voltar:hover {
+  background-color: #f0f0f0;
+}
+
+/* =========================================================
+   SISTEMA DE GRID CUSTOMIZADO (SUBSTITUI O PRIMEFLEX)
+   ========================================================= */
+
+/* Container Grid base */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+  width: 100%;
+}
+
+/* Colunas Base */
+.col-12 { grid-column: span 12; }
+.col-6  { grid-column: span 6; }
+.col-4  { grid-column: span 4; }
+
+/* Responsividade (Mobile / Desktop) */
+@media (max-width: 768px) {
+  .md\:col-6, .md\:col-4 {
+    grid-column: span 12; /* No celular, tudo ocupa 100% */
+  }
+}
+@media (min-width: 769px) {
+  .md\:col-6 { grid-column: span 6; } /* Desktop: 2 colunas (50%) */
+  .md\:col-4 { grid-column: span 4; } /* Desktop: 3 colunas (33%) */
+}
+
+/* =========================================================
+   ESTILOS DE CARTÃO E UTILITÁRIOS (SUBSTITUI O TAILWIND)
+   ========================================================= */
+.card-shadow {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.card-radius-xl {
+  border-radius: 12px;
+}
+.card-radius-lg {
+  border-radius: 8px;
+}
+.text-sm { font-size: 14px; }
+.text-xs { font-size: 12px; }
+.font-bold { font-weight: 700; }
+.font-extrabold { font-weight: 800; }
+.uppercase { text-transform: uppercase; }
+.tracking-wide { letter-spacing: 0.1em; }
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gap-2 { gap: 8px; }
+.gap-4 { gap: 16px; }
+.mb-3 { margin-bottom: 12px; }
+.mb-5 { margin-bottom: 20px; }
+.mb-4 { margin-bottom: 16px; }
+.mt-2 { margin-top: 8px; }
+.mt-5 { margin-top: 20px; }
+
+/* =========================================================
+   BOTÃO "VOLTAR PARA INÍCIO" (EFEITO DE INVERSÃO)
+   ========================================================= */
+
+/* Estado base: Fundo cinza clarinho, texto escuro */
+.btn-voltar {
+  background-color: #f1f5f9 !important; 
+  color: #0f172a !important; 
+  border: none !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+/* Estado Hover: Inverte as cores! Fundo escuro, texto claro */
+.btn-voltar:hover {
+  background-color: #0f172a !important; 
+  color: #f1f5f9 !important; 
+  transform: translateY(-2px) !important;
+}
+
+/* Garante que o ícone da seta também inverta a cor */
+.btn-voltar:hover i {
+  color: #f1f5f9 !important;
+}

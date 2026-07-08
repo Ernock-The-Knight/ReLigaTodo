@@ -1,0 +1,25 @@
+/* CardAula.module.css */
+
+.cardAula {
+  border-color: #e2e8f0 !important;
+  transition: border-color 0.2s ease;
+}
+
+.cardAula:hover {
+  border-color: var(--brand-blue) !important;
+}
+
+.cardAula:hover .textAssistir {
+  color: var(--brand-blue) !important;
+}
+
+.btnVoltar {
+  background-color: #f1f5f9; 
+  color: #0f172a; 
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btnVoltar:hover {
+  background-color: #0f172a; 
+  color: #f1f5f9; 
+}

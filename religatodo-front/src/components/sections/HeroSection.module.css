@@ -1,0 +1,30 @@
+/* HeroSection.module.css */
+
+.heroTab {
+  border-top: 4px solid #2e2e2e !important;
+  color: #2e2e2e !important;
+  cursor: pointer;
+  /* Transição suave de cor e movimento */
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.tabAluno:hover {
+  border-top-color: var(--brand-blue) !important;
+  color: var(--brand-blue) !important;
+}
+
+.tabProfessor:hover {
+  border-top-color: var(--brand-green) !important;
+  color: var(--brand-green) !important;
+}
+
+.tabFiscal:hover {
+  border-top-color: var(--brand-orange) !important;
+  color: var(--brand-orange) !important;
+}
+
+.tabProfEscolhido:hover {
+  border-color: var(--brand-red2) !important;
+  color: var(--brand-red2) !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+}
