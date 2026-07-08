@@ -27,14 +27,6 @@ Este diretório contém a API REST do projeto ReLigaTodo, desenvolvida com Java 
 - src/main/java/com/religatodo/api/repository: repositórios para acesso ao banco
 - src/main/resources: configuração da aplicação e arquivos estáticos
 
-## Configuração do banco
-
-A API está configurada para usar um banco MySQL local com os seguintes dados padrão:
-
-- Banco: religatodo
-- Usuário: root
-- Senha: 1234
-
 O arquivo de configuração está em:
 - src/main/resources/application.properties
 
